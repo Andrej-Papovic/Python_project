@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user_vouchers.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
@@ -24,7 +24,7 @@ def total_spent(user_id):
 
     total_spending = sum(spending.money_spent for spending in user_spending)
 
-    if total_spending > 1000:
+    if total_spending > 2000:
         user_data = {
             'user_id': user_id,
             'total_spending': total_spending
@@ -41,17 +41,23 @@ def total_spent(user_id):
         'total_spending': total_spending
     })
 
-# @app.route('/average_spending_by_age', methods=['GET'])
-# def average_spending_by_age():
-#     age_ranges = {
-#         "18-24": (18, 24),
-#         "25-30": (25, 30),
-#         "31-36": (31, 36),
-#         "37-47": (37, 47),
-#         ">47": (48, 100)
-#     }
+
+@app.route('/average_spending_by_age', methods=['GET'])
+def average_spending_by_age():
+    age_ranges = {
+        "18-24": (18, 24),
+        "25-30": (25, 30),
+        "31-36": (31, 36),
+        "37-47": (37, 47),
+        ">47": (48, 100)
+    }
 
     averages = {}
+    for age_ranges, (min_age, max_age) in age_ranges.items():
+
+
+
+
 
 
 # def send_telegram_message(message):
